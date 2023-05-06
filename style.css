@@ -1,0 +1,19 @@
+
+body {
+
+    margin: 0px;
+    background-color: rgba(0,0,0, 0.5);
+    background-image: url('assets/aa.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 1000px;
+
+
+}
+
+#nameHeader {
+    width: 200 px;
+    text-align: center;
+    color: white;
+
+}
