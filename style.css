@@ -1,8 +1,9 @@
 
 body {
 
-    margin: 0px;
-    height: 1000px;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     background-image: url('assets/aa.jpg');
     background-size: cover;
     position: relative;
@@ -12,13 +13,26 @@ body {
 
 }
 
+.nicoas {
+
+    display: flex;
+
+}
+
+.presentacion, .imagenCircular {
+
+    display: inline-block;
+
+}
+
 .presentacion {
 
     width: 500px;
     height: 300px;
     text-align: center;
     top: 45%;
-    transform: translate(-0%, -50%);
+    right: 50px;
+    transform: translate(-0%, -35%);
     background-repeat: repeat-x;
     color: white;
     position: relative;
@@ -35,6 +49,18 @@ body {
 
 }
 
+.imagenCircular {
+
+    background-image: url('assets/yo.jpg');
+    height: 150px;
+    width: 150px;
+    position: relative;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(0%, 250%);
+
+}
+
 body:before {
 
     content: "";
@@ -45,3 +71,5 @@ body:before {
     opacity: 0.86;
 
 }
+
+
