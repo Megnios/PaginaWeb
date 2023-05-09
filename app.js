@@ -1,5 +1,6 @@
 const xhr = new XMLHttpRequest();
-const url = "https://api.github.com/repos/Megnios/Megnios.github.io/contents/HTML";
+//const url = "https://api.github.com/repos/Megnios/Megnios.github.io/contents/HTML";
+const url = "https://api.github.com/Megnios";
 const token = "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";
 
 xhr.open("GET", url, true);
