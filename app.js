@@ -1,20 +1,18 @@
-function cargarContenido() {
-  // Cargar contenido adicional utilizando AJAX y jQuery, por ejemplo:
-  $.ajax({
-    url: "tecnologias.html",
-    cache: false,
-    success: function(html){
-      $("#contenido").append(html);
+$(document).ready(function() {
+  var page = 1;
+  var perPage = 10;
+  var loading = false;
+
+  $(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() >= $(document).height() && !loading) {
+      loading = true;
+      $.getJSON("https://api.github.com/repos/:owner/:repo/issues?page=" + page + "&per_page=" + perPage, function(data) {
+        for(var i = 0; i < data.length; i++) {
+          $("#content").append("<p>" + data[i].title + "</p>");
+        }
+        page++;
+        loading = false;
+      });
     }
   });
-}
-
-var observer = new IntersectionObserver(function(entries) {
-  if(entries[0].isIntersecting === true) {
-    // El elemento ancla es visible, cargar contenido adicional
-    cargarContenido();
-  }
-}, { threshold: [0] });
-
-observer.observe(document.getElementById("sentinel"));
-
+});
