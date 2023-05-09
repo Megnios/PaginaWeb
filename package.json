@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@octokit/rest": "^19.0.7"
+  }
+}
