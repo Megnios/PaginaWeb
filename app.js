@@ -11,7 +11,8 @@ xhr.onload = function() {
     // Aquí puedes procesar los archivos HTML y agregarlos dinámicamente a tu sitio web
     console.log("hola");
   } else {
-    console.log("Error al obtener archivos HTML: " + xhr.statusText);
+    console.log("mal");
+    //console.log("Error al obtener archivos HTML: " + xhr.statusText);
   }
 };
 
