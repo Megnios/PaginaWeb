@@ -1,18 +1,17 @@
-$(document).ready(function() {
-  var page = 1;
-  var perPage = 10;
-  var loading = false;
+// Hacer una solicitud a la API de GitHub para obtener la lista de archivos
+$.getJSON('https://api.github.com/repos/Megnios/PaginaWeb/contents/<ruta-a-la-carpeta>', function(data) {
 
-  $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() >= $(document).height() && !loading) {
-      loading = true;
-      $.getJSON("https://api.github.com/repos/:owner/:repo/issues?page=" + page + "&per_page=" + perPage, function(data) {
-        for(var i = 0; i < data.length; i++) {
-          $("#content").append("<p>" + data[i].title + "</p>");
-        }
-        page++;
-        loading = false;
-      });
+  // Recorrer la lista de archivos
+  $.each(data, function(index, file) {
+
+    // Verificar si el archivo es un archivo HTML
+    if (file.name.endsWith('.html')) {
+
+      // Crear un nuevo elemento <div> para el archivo y agregarlo a la página
+      var newDiv = $('<div>').appendTo('body');
+
+      // Cargar el contenido del archivo HTML en el nuevo elemento <div>
+      newDiv.load(file.download_url);
     }
   });
 });
