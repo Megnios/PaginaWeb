@@ -1,33 +1,25 @@
-const { Octokit } = require("@octokit/rest");
+const Octokit = require('@octokit/rest');
+
 const octokit = new Octokit();
 
-const owner = "Megnios";
-const repo = "PaginaWeb";
-const path = "HTML"; // ruta de la carpeta que contiene los archivos HTML
-
-async function getHtmlFiles() {
-  const iterator = octokit.paginate.iterator(octokit.rest.repos.getContent, {
-    owner,
-    repo,
-    path,
+async function fetchHTMLFiles() {
+  const options = octokit.repos.listContents.endpoint.merge({
+    owner: 'Megnios',
+    repo: 'PaginaWeb',
+    path: 'HTML',
   });
 
-  const htmlFiles = [];
+  const response = await octokit.paginate.iterator(options);
 
-  for await (const response of iterator) {
-    const files = response.data;
+  for await (const { data } of response) {
+    const files = data.filter(item => item.type === 'file' && item.name.endsWith('.html'));
 
-    // Filtramos los archivos que son HTML
-    const htmlFilesInPage = files.filter((file) => file.name.endsWith(".html"));
-
-    // Agregamos los archivos HTML a la lista
-    htmlFiles.push(...htmlFilesInPage);
+    for (const file of files) {
+      const fileUrl = file.download_url;
+      // Aquí puedes hacer lo que necesites con la URL del archivo
+      console.log(fileUrl);
+    }
   }
-
-  return htmlFiles;
 }
 
-(async () => {
-  const htmlFiles = await getHtmlFiles();
-  console.log(htmlFiles);
-})();
+fetchHTMLFiles();
