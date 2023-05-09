@@ -1,5 +1,5 @@
 // Hacer una solicitud a la API de GitHub para obtener la lista de archivos
-$.getJSON('https://api.github.com/repos/Megnios/PaginaWeb/contents/<ruta-a-la-carpeta>', function(data) {
+$.getJSON('https://api.github.com/repos/Megnios/PaginaWeb/contents/HTML', function(data) {
 
   // Recorrer la lista de archivos
   $.each(data, function(index, file) {
